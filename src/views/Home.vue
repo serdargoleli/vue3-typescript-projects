@@ -6,8 +6,8 @@
       <router-link :to="{ name: 'photos' }" class="card">
         <figure><img class="image-full" src="/pexels.jpg" alt="Shoes" /></figure>
         <div class="card-body">
-          <h2 class="card-title">Ücretsiz Stok Resimler</h2>
-          <p>Ücretsiz stok fotoğrafları...</p>
+          <h2 class="card-title">Ücretsiz Stok fotoğrafları</h2>
+          <p>Ücretsiz stok fotoğrafları | power by pexels</p>
         </div>
       </router-link>
       <router-link to="/" class="card">

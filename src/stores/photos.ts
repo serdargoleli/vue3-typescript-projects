@@ -1,42 +1,22 @@
-import { ref, computed } from "vue";
-import { defineStore } from "pinia";
 import axios from "axios";
+import { ref } from "vue";
+import { defineStore } from "pinia";
+import type Response from "@/types/photoType";
+import type { Photo } from "@/types/photoType";
 
-interface Src {
-  landscape: string;
-  large: string;
-  large2x: string;
-  medium: string;
-  original: string;
-  portrait: string;
-  small: string;
-  tiny: string;
-}
-interface Photo {
-  alt: string;
-  avg_color: string;
-  height: number;
-  width: number;
-  photographer: string;
-  photographer_id: number;
-  photographer_url: string;
-  url: string;
-  src: Src;
-}
-interface Response {
-  page: number;
-  per_page: number;
-  next_page: string;
-  prev_page: string;
-  total_results: number;
-  photos: Photo;
-}
 export const usePhotosStore = defineStore("photos", () => {
   const data = ref<Response>();
+  const photos = ref<Photo[]>([]);
 
-  const getPhotos = async () => {
-    const response = await axios.get("https://api.pexels.com/v1/curated");
+  const getPhotos = async (nextPage: string = "") => {
+    let url = "https://api.pexels.com/v1/curated";
+    if (nextPage.length > 0) {
+      url = nextPage;
+    }
+    const response = await axios.get(url);
+
     data.value = response.data;
+    photos.value = photos.value.concat(response.data.photos);
   };
-  return { data, getPhotos };
+  return { data, photos, getPhotos };
 });
