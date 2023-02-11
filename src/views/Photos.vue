@@ -6,6 +6,7 @@
   import router from "@/router";
   import CloseIcon from "@/components/icons/CloseIcon.vue";
   import Alert from "@/components/elements/Alert.vue";
+
   const route = useRoute();
   const photoStore = usePhotosStore();
   const isLoading = ref<boolean>(false);
@@ -65,13 +66,13 @@
 <template>
   <div class="bg-header">
     <img :src="photoStore.headerBg" loading="lazy" alt="header bg" />
-    <div class="flex w-96">
+    <div class="flex w-80 lg:w-96">
       <input
         v-model="searchText"
         @keydown.enter="searchPhotoHandler"
         type="text"
-        placeholder="Type here"
-        class="input w-full max-w-lg rounded-tr-none rounded-br-none"
+        placeholder="Birşeyler arayın.."
+        class="input w-full max-w-lg rounded-tr-none rounded-br-none focus:outline-none focus:bg-base-300"
       />
       <button
         @click="searchPhotoHandler"
@@ -92,22 +93,28 @@
       {{ searchText }}
     </button>
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-8 my-8">
     <div v-for="(photo, index) in photoStore.photos" :key="index">
       <SinglePhoto :photo="photo" />
     </div>
   </div>
   <Alert class="mb-8" v-if="!isLoading && photoStore.photos.length <= 0" type="error">Aranan Kriterde Öge Bulunamadı.</Alert>
 
-  <div class="flex justify-center items-center mb-8" v-if="photoStore.photos.length < (photoStore.data?.total_results as number)">
+  <div class="flex flex-col justify-center items-center mb-8" v-if="photoStore.photos.length < (photoStore.data?.total_results as number)">
     <button
       v-if="photoStore.photos.length > 0"
-      :class="`btn ${isLoading ? 'loading' : 'btn-accent'} `"
+      :class="`btn ${isLoading ? 'loading' : 'btn-accent'}`"
       @click="getNextPageData(photoStore.data?.next_page as string)"
     >
       Daha Fazla Görüntüle
     </button>
   </div>
+  <p class="text-center text-slate-500">
+    power by
+    <a class="text-slate-400 hover:text-orange-500" href="https://www.pexels.com/tr-tr/" target="_blank" ref="nofollow noopener noreferrer"
+      >pexels.com</a
+    >
+  </p>
 </template>
 
 <style lang="postcss">
