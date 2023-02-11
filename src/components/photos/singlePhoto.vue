@@ -6,7 +6,7 @@
 
 <template>
   <div class="photo-card">
-    <figure>
+    <figure :style="`background-color:${photo.avg_color}`" class="rounded-md">
       <img class="rounded-md" :src="photo.src.landscape" :alt="photo.alt" loading="lazy" />
     </figure>
     <div class="flex items-center mt-2">
