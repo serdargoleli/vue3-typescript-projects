@@ -15,9 +15,9 @@ const router = createRouter({
       component: () => import("../views/Photos.vue"),
     },
     {
-      path: "/make-up",
-      name: "makeup",
-      component: () => import("../views/Makeup.vue"),
+      path: "/univercity",
+      name: "univercity",
+      component: () => import("../views/Univercity.vue"),
     },
   ],
 });
