@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import Navbar from "@/components/Navbar.vue";
+  document.title = "SGAPI's Project";
 </script>
 
 <template>

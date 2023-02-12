@@ -17,6 +17,7 @@
   });
 
   const getUnivercity = async (country: string): Promise<void> => {
+    document.title = `${selectedCountry.value} Univercities `;
     isLoading.value = true;
     selectedCountry.value = country;
     await univercityStore.getUnivercity(country);
@@ -24,6 +25,7 @@
   };
 
   onMounted(async () => {
+    document.title = "Find Univercities";
     await getUnivercity("Turkey");
   });
 </script>

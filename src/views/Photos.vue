@@ -14,6 +14,7 @@
   const isSearch = ref<boolean>(false);
 
   onMounted(async () => {
+    document.title = "Stock Photo | Power By Pexels";
     isLoading.value = true;
     if (route.query.hasOwnProperty("search")) {
       isSearch.value = true;
