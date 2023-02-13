@@ -1005,7 +1005,7 @@ export const useUnivercity = defineStore("univercity", () => {
   const univercities = ref<Univercity[]>([]);
 
   const getUnivercity = async (country: string) => {
-    const { data } = await axios.get(`http://universities.hipolabs.com/search?country=${country}`);
+    const { data } = await axios.get(`//universities.hipolabs.com/search?country=${country}`);
     univercities.value = data;
   };
   return { getUnivercity, countries, univercities };
